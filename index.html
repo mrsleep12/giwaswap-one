@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GiwaSwap One — ETH ↔ tAMM di GIWA Sepolia</title>
+    <script type="module" crossorigin src="./assets/index-DnfRcT0b.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-1Q5I2HxN.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <h1>GiwaSwap One</h1>
+        <span class="badge">GIWA Sepolia Testnet</span>
+      </header>
+      <p class="sub">
+        Swap ETH ↔ tAMM langsung ke pool Ammora V5 di GIWA Sepolia (chain 91342).
+        Testnet saja — bukan mainnet.
+      </p>
+
+      <section class="card">
+        <div class="wallet-row">
+          <button id="connectBtn" class="btn btn-primary">Connect Wallet</button>
+          <span id="accountLabel" class="account hidden"></span>
+          <span id="chainLabel" class="chain hidden"></span>
+        </div>
+        <p id="walletHint" class="hint">
+          Quote tampil tanpa wallet. Hubungkan wallet untuk swap.
+        </p>
+
+        <div class="balances hidden" id="balances">
+          <div>ETH: <b id="balEth">–</b></div>
+          <div>WETH: <b id="balWeth">–</b></div>
+          <div>tAMM: <b id="balTamm">–</b></div>
+        </div>
+
+        <div class="swap-box">
+          <label class="field-label" id="inLabel">Kamu bayar (ETH)</label>
+          <div class="input-row">
+            <input id="amountInput" type="text" inputmode="decimal" placeholder="0.0" autocomplete="off" />
+            <span class="token" id="inToken">ETH</span>
+          </div>
+          <p id="insufficient" class="warn hidden">Saldo tidak cukup.</p>
+
+          <button id="flipBtn" class="flip" title="Balik arah">⇅</button>
+
+          <label class="field-label">Kamu terima (estimasi)</label>
+          <div class="input-row output">
+            <input id="outputAmount" type="text" readonly placeholder="–" />
+            <span class="token" id="outToken">tAMM</span>
+          </div>
+        </div>
+
+        <div class="quote-box" id="quoteBox">
+          <div class="quote-row"><span>Rate</span><b id="rateText">–</b></div>
+          <div class="quote-row"><span>Minimum diterima (slippage 0,5%)</span><b id="minOutText">–</b></div>
+          <div class="quote-row"><span>Fee pool</span><b>100 bps (1%)</b></div>
+          <div class="quote-row"><span>Pool</span><a id="poolLink" target="_blank" rel="noopener">0x1ef9…bcf8</a></div>
+          <div class="quote-row"><span>Status quote</span><b id="quoteStatus">–</b></div>
+        </div>
+
+        <p id="wrapNote" class="hint">
+          ℹ️ Arah beli butuh 1 tx tambahan untuk wrap ETH → WETH sebelum swap.
+        </p>
+
+        <button id="swapBtn" class="btn btn-swap" disabled>Swap</button>
+        <p id="swapHint" class="hint center">Hubungkan wallet untuk swap.</p>
+
+        <div id="steps" class="steps hidden"></div>
+      </section>
+
+      <footer class="footer">
+        <a href="https://ammora.org" target="_blank" rel="noopener">Ammora</a>
+        ·
+        <a href="https://sepolia-explorer.giwa.io" target="_blank" rel="noopener">GIWA Sepolia Explorer</a>
+        ·
+        <a href="https://sepolia-explorer.giwa.io/address/0x1ef92a6a9bb4bbed2b385dd5e688f88e7965bcf8" target="_blank" rel="noopener">Pool tAMM/WETH</a>
+        <p class="disclaimer">
+          GiwaSwap One memanggil pool ARL V5 langsung (quoteExactIn / swapExactIn) via
+          SDK Ammora 0.3.9. Tidak ada private key yang disimpan atau dikirim halaman ini.
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
